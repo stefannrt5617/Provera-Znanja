@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.w3schools.com" elementFormDefault="qualified" targetNamespace="http://www.w3schools.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Magacin">
+    <xs:complexType>
+      <xs:sequence minOccurs="1" maxOccurs="unbounded">
+        <xs:element ref="Artikal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Artikal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Naziv" />
+        <xs:element ref="DatumIzrade" />
+        <xs:element ref="Cena" />
+        <xs:element ref="KompanijaProdavca" />
+        <xs:element minOccurs="1" maxOccurs="unbounded" ref="Email" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Naziv">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="sifra" type="xs:string" use="required" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DatumIzrade">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Dan" />
+        <xs:element ref="Mesec" />
+        <xs:element ref="Godina" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Dan" type="xs:string" />
+  <xs:element name="Mesec" type="xs:string" />
+  <xs:element name="Godina" type="xs:string" />
+  <xs:element name="Cena">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:nonNegativeInteger">
+          <xs:attribute default="DIN" name="tip">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="DIN" />
+                <xs:enumeration value="EUR" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="KompanijaProdavca">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ImeKompanije" />
+        <xs:element minOccurs="1" maxOccurs="unbounded" ref="Adresa" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ImeKompanije" type="xs:string" />
+  <xs:element name="Adresa" type="xs:string" />
+  <xs:element name="Email">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="tip" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="privatni" />
+                <xs:enumeration value="sluzbeni" />            
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+
+
+</xs:schema>
