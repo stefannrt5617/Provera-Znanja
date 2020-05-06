@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!DOCTYPE Magacin SYSTEM "magacin.dtd">
+<Magacin xmlns="http://www.w3schools.com"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.w3schools.com magacin.xsd">
+
+    <Artikal>
+        <Naziv sifra="1">USB Fles</Naziv>
+
+        <DatumIzrade>
+            <Dan>1</Dan>
+            <Mesec>4</Mesec>
+            <Godina>2020</Godina>
+        </DatumIzrade>
+
+        <Cena tip="DIN">1000</Cena>
+
+        <KompanijaProdavca>
+            <ImeKompanije>IT Solutions</ImeKompanije>
+            <Adresa>Banatska 18 Starcevo</Adresa>
+        </KompanijaProdavca>
+
+        <Email tip='sluzbeni'>prodavac1@gmail.com</Email>
+    </Artikal>
+
+     <Artikal>
+        <Naziv sifra="2">PC Xero</Naziv>
+
+        <DatumIzrade>
+            <Dan>1</Dan>
+            <Mesec>5</Mesec>
+            <Godina>2019</Godina>
+        </DatumIzrade>
+
+        <Cena tip="EUR">450</Cena>
+
+        <KompanijaProdavca>
+            <ImeKompanije>IT Solutions</ImeKompanije>
+            <Adresa>Oslobodjenja 20 Pancevo</Adresa>
+        </KompanijaProdavca>
+        <Email tip='privatni'>prodavac2@gmail.com</Email>
+    </Artikal>
+
+</Magacin>
