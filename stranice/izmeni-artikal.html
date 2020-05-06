@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postavi Adrese</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <div>
+        <a href="/sve-osobe">Sve Osobe</a>
+    </div>
+    <h3>Odaberi Artikal</h3>
+ 
+    <div id="select-artikli">
+    </div>
+    <form method="POST" action="/izmeni-artikal">
+        ID: <input type="number" name="id" id='id' readonly required><br><br>
+        Naziv: <input type="text" name="naziv" id='naziv' required><br><br>
+        Cena: <input type="text" name="cena" id='cena' required><br><br>
+        Ime Kompanije: <input type="text" name="ime" id='ime' required><br><br>
+        <button type="submit">Izmeni Artikal</button>
+    </form>
+
+    <script>
+      
+        $(document).ready(function(){
+            $.ajax({
+                url:'/api/svi-artikli',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response){
+                    popuniPodatke(response);
+                }
+            });
+        });
+        
+        function popuniPodatke(response){
+            let div = document.querySelector('#select-artikli');
+            let html = `                
+                <select id="artikli" onchange="popuniFormu()">    
+                    <option value='null'>--Izaberite artikal--</option>
+            `;
+            for(let a of response){
+                html += `
+                    <option value='${a.id}:${a.naziv}:${a.cena}:${a.imeKompanije}'>${a.naziv} ${a.cena} </option>
+                `;
+            }
+            html += `
+                </select><br><br>
+            `;
+            div.innerHTML = html;
+        }
+        //Popunjavanje forme na osnovu izabrane osobe
+        function popuniFormu(){
+            let selectOsobe = document.querySelector('#artikli');
+            document.querySelector('#id').value = selectOsobe.value.split(':')[0];
+            document.querySelector('#naziv').value = selectOsobe.value.split(':')[1];
+            document.querySelector('#cena').value = selectOsobe.value.split(':')[2];
+            document.querySelector('#ime').value = selectOsobe.value.split(':')[3];
+        }
+    </script>
+</body>
+</html>

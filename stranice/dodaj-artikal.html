@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj Osobu</title>
+</head>
+<body>
+    <div>
+        <a href="/svi-artikli">Svi Artikli</a>
+    </div>
+    <h3>Dodaj Artikal</h3>
+  
+    <form action="/dodaj-artikal" method="POST">
+        ID: <input type="number" min=1 name="id"><br><br>
+        Naziv: <input type="text" name="naziv"><br><br>
+        Cena: <input type="text" name="cena"><br><br>
+        Ime Kompanije: <input type="text" name="ime"><br><br>
+        <button type="submit">Dodaj Artikal</button>
+    </form>
+</body>
+</html>

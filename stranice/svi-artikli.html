@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sve Osobe</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        th,td {
+            padding: 5px 12px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div>
+        <a href="/izmeni-artikal">Izmeni Artikal</a><br><br>
+        <a href="/dodaj-artikal">Dodaj Artikal</a>
+    </div>
+    <h3>Sve osobe</h3>
+    <div id="prikaz-artikala">
+       
+    </div>
+
+    <script>
+        
+        $(document).ready(function(){
+            $.ajax({
+                url:'/api/svi-artikli',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response){
+                    prikazPodataka(response);
+                }
+            });
+        });
+       
+        function prikazPodataka(response){
+            let div = document.querySelector("#prikaz-artikala");
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Naziv</th>
+                            <th>Cena</th>
+                            <th>Ime Kompanije</th>
+                            <th>Brisanje</th>
+                        </tr>
+                    <thead>
+                    <tbody>
+            `;
+            for(let a of response){
+                html += `
+                    <tr>
+                        <td>${a.id}</td>
+                        <td>${a.naziv}</td>
+                        <td>${a.cena}</td>
+                        <td>${a.imeKompanije}</td>
+                        <td>
+                            <form action='/obrisi-artikal' method='POST'>
+                                <input type='hidden' name='id' value='${a.id}'>
+                                <button type='submit'>Obrisi Artikal</td>
+                            </form>
+                        </td>
+                    </tr>
+                `;
+            }
+            html += `
+                    </tbody>
+                </table>
+            `;
+            div.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
